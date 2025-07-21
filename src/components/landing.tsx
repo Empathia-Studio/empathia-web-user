@@ -116,7 +116,7 @@ export default function EmpathiaLanding() {
                   <EyeOff className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white text-lg">Share Anonymously</div>
+                  <div className="font-semibold text-white text-lg">Anonymous #8386</div>
                   <div className="text-sm text-purple-200">Your story will be completely private</div>
                 </div>
               </div>
@@ -264,7 +264,7 @@ export default function EmpathiaLanding() {
                   <EyeOff className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Anonymous Soul</div>
+                  <div className="text-white font-medium">Anonymous #2158</div>
                   <div className="text-white/60 text-sm flex items-center">
                     <Clock className="w-4 h-4 mr-1" />2 hours ago
                   </div>
@@ -307,7 +307,7 @@ export default function EmpathiaLanding() {
                   <EyeOff className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Hopeful Dreamer</div>
+                  <div className="text-white font-medium">Anonymous #2743</div>
                   <div className="text-white/60 text-sm flex items-center">
                     <Clock className="w-4 h-4 mr-1" />5 hours ago
                   </div>
@@ -527,7 +527,7 @@ export default function EmpathiaLanding() {
                 <Heart className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Hopeful Dreamer</div>
+                <div className="text-white font-medium">Anonymous #2743</div>
                 <div className="text-white/60 text-xs">92% compatibility</div>
               </div>
             </div>
@@ -546,7 +546,7 @@ export default function EmpathiaLanding() {
                 <Users className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Gentle Soul</div>
+                <div className="text-white font-medium">Anonymous #2163</div>
                 <div className="text-white/60 text-xs">87% compatibility</div>
               </div>
             </div>
@@ -565,7 +565,7 @@ export default function EmpathiaLanding() {
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Wise Mentor</div>
+                <div className="text-white font-medium">Anonymous #2753</div>
                 <div className="text-white/60 text-xs">94% compatibility</div>
               </div>
             </div>
@@ -584,7 +584,7 @@ export default function EmpathiaLanding() {
                 <Smile className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Joyful Spirit</div>
+                <div className="text-white font-medium">Anonymous #2613</div>
                 <div className="text-white/60 text-xs">89% compatibility</div>
               </div>
             </div>
@@ -607,6 +607,409 @@ export default function EmpathiaLanding() {
     )
   }
 
+    // AI Assistant Section
+    const AIAssistantSection = () => {
+      const [showAnalysis, setShowAnalysis] = useState(false)
+      const [showSuggestions, setShowSuggestions] = useState(false)
+      const [aiAssistanceEnabled, setAiAssistanceEnabled] = useState(true)
+      const [chatInput, setChatInput] = useState("")
+      const [aiChatInput, setAiChatInput] = useState("")
+  
+      const conversationHistory = [
+        {
+          type: "other",
+          content: "I've been struggling with anxiety lately and don't know how to cope...",
+          timestamp: "2:30 PM",
+          user: "Anonymous #2743",
+        },
+        {
+          type: "me",
+          content: "I understand how you feel. I've been through similar struggles.",
+          timestamp: "2:32 PM",
+        },
+        {
+          type: "other",
+          content: "Really? How did you manage to get through it?",
+          timestamp: "2:33 PM",
+          user: "Anonymous #2743",
+        },
+        {
+          type: "me",
+          content: "It took time, but therapy and meditation really helped me.",
+          timestamp: "2:35 PM",
+        },
+      ]
+  
+      const aiChatHistory = [
+        {
+          type: "user",
+          content: "How should I respond to someone sharing anxiety struggles?",
+          timestamp: "2:30 PM",
+        },
+        {
+          type: "ai",
+          content:
+            "Show empathy first, then share your own experience if relevant. Ask open-ended questions to encourage them to share more.",
+          timestamp: "2:31 PM",
+        },
+        {
+          type: "user",
+          content: "What if they seem hesitant to open up more?",
+          timestamp: "2:32 PM",
+        },
+        {
+          type: "ai",
+          content:
+            "Give them space and time. You can say something like 'I'm here whenever you're ready to talk more' to show support without pressure.",
+          timestamp: "2:33 PM",
+        },
+      ]
+  
+      return (
+        <div className="relative">
+              {/* Chat Interface */}
+              <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+                {/* Chat Header */}
+                <div className="flex items-center justify-between p-6 border-b border-white/10">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+                      <EyeOff className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Anonymous #2743</h3>
+                      <p className="text-white/60 text-sm flex items-center">
+                        <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                        Online now
+                      </p>
+                    </div>
+                  </div>
+                </div>
+  
+                {/* Main Chat Area */}
+                <div className="h-96 p-4 overflow-y-auto">
+                  <div className="space-y-4">
+                    {/* Message 1 - Other user */}
+                    <div className="flex justify-start">
+                      <div className="max-w-[70%]">
+                        <div className="bg-white/10 rounded-2xl p-3 border border-white/20">
+                          <p className="text-white/90 text-sm leading-relaxed">
+                            I've been struggling with anxiety lately and don't know how to cope...
+                          </p>
+                        </div>
+                        <div className="text-xs text-white/60 mt-1">2:30 PM</div>
+                      </div>
+                    </div>
+  
+                    {/* AI Analysis & Suggestions for Message 1 - Only show if AI assistance is enabled */}
+                    {aiAssistanceEnabled && (
+                      <div className="ml-4 space-y-2">
+                        {/* AI Analysis Accordion */}
+                        <div>
+                          <button
+                            onClick={() => setShowAnalysis(!showAnalysis)}
+                            className="flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-400/30 hover:border-purple-400/50 transition-all text-xs"
+                          >
+                            <Bot className="w-3 h-3 text-purple-300" />
+                            <span className="text-purple-300 font-medium">AI Analysis</span>
+                            <ChevronDown
+                              className={`w-3 h-3 text-purple-300 transition-transform ${
+                                showAnalysis ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+  
+                          {showAnalysis && (
+                            <div className="mt-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg p-3 border border-purple-400/20 animate-in slide-in-from-top duration-300">
+                              <div className="space-y-1">
+                                <p className="text-white/80 text-xs">• Emotional state: Vulnerable, seeking support</p>
+                                <p className="text-white/80 text-xs">• Tone: Open but cautious</p>
+                                <p className="text-white/80 text-xs">• Intent: Looking for coping strategies</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+  
+                        {/* Response Suggestions Accordion */}
+                        <div>
+                          <button
+                            onClick={() => setShowSuggestions(!showSuggestions)}
+                            className="flex items-center space-x-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-2 border border-blue-400/30 hover:border-blue-400/50 transition-all text-xs"
+                          >
+                            <Sparkles className="w-3 h-3 text-blue-300" />
+                            <span className="text-blue-300 font-medium">Suggested Responses</span>
+                            <ChevronDown
+                              className={`w-3 h-3 text-blue-300 transition-transform ${
+                                showSuggestions ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+  
+                          {showSuggestions && (
+                            <div className="mt-2 space-y-1 animate-in slide-in-from-top duration-300">
+                              <button
+                                onClick={() =>
+                                  setChatInput(
+                                    "I understand how you feel. I've been through similar struggles and found that...",
+                                  )
+                                }
+                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                              >
+                                "I understand how you feel..."
+                              </button>
+                              <button
+                                onClick={() => setChatInput("Have you tried any coping strategies that helped?")}
+                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                              >
+                                "Have you tried any coping strategies?"
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+  
+                    {/* Message 2 - Current user */}
+                    <div className="flex justify-end">
+                      <div className="max-w-[70%]">
+                        <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-3">
+                          <p className="text-white text-sm leading-relaxed">
+                            I understand how you feel. I've been through similar struggles and found that therapy really
+                            helped me.
+                          </p>
+                        </div>
+                        <div className="text-xs text-white/60 mt-1 text-right">2:32 PM</div>
+                      </div>
+                    </div>
+  
+                    {/* Message 3 - Other user */}
+                    <div className="flex justify-start">
+                      <div className="max-w-[70%]">
+                        <div className="bg-white/10 rounded-2xl p-3 border border-white/20">
+                          <p className="text-white/90 text-sm leading-relaxed">
+                            Really? How did you manage to get through it? I feel so overwhelmed sometimes.
+                          </p>
+                        </div>
+                        <div className="text-xs text-white/60 mt-1">2:33 PM</div>
+                      </div>
+                    </div>
+  
+                    {/* AI Analysis & Suggestions for Message 3 - Only show if AI assistance is enabled */}
+                    {aiAssistanceEnabled && (
+                      <div className="ml-4 space-y-2">
+                        {/* AI Analysis Accordion */}
+                        <div>
+                          <button
+                            onClick={() => setShowAnalysis(!showAnalysis)}
+                            className="flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-400/30 hover:border-purple-400/50 transition-all text-xs"
+                          >
+                            <Bot className="w-3 h-3 text-purple-300" />
+                            <span className="text-purple-300 font-medium">AI Analysis</span>
+                            <ChevronDown
+                              className={`w-3 h-3 text-purple-300 transition-transform ${
+                                showAnalysis ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+  
+                          {showAnalysis && (
+                            <div className="mt-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg p-3 border border-purple-400/20 animate-in slide-in-from-top duration-300">
+                              <div className="space-y-1">
+                                <p className="text-white/80 text-xs">• Emotional state: Vulnerable, seeking support</p>
+                                <p className="text-white/80 text-xs">• Tone: Open but cautious</p>
+                                <p className="text-white/80 text-xs">• Intent: Looking for coping strategies</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+  
+                        {/* Response Suggestions Accordion */}
+                        <div>
+                          <button
+                            onClick={() => setShowSuggestions(!showSuggestions)}
+                            className="flex items-center space-x-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-2 border border-blue-400/30 hover:border-blue-400/50 transition-all text-xs"
+                          >
+                            <Sparkles className="w-3 h-3 text-blue-300" />
+                            <span className="text-blue-300 font-medium">Suggested Responses</span>
+                            <ChevronDown
+                              className={`w-3 h-3 text-blue-300 transition-transform ${
+                                showSuggestions ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+  
+                          {showSuggestions && (
+                            <div className="mt-2 space-y-1 animate-in slide-in-from-top duration-300">
+                              <button
+                                onClick={() =>
+                                  setChatInput(
+                                    "I understand how you feel. I've been through similar struggles and found that...",
+                                  )
+                                }
+                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                              >
+                                "I understand how you feel..."
+                              </button>
+                              <button
+                                onClick={() => setChatInput("Have you tried any coping strategies that helped?")}
+                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                              >
+                                "Have you tried any coping strategies?"
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+  
+                    {/* Message 4 - Current user */}
+                    <div className="flex justify-end">
+                      <div className="max-w-[70%]">
+                        <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-3">
+                          <p className="text-white text-sm leading-relaxed">
+                            It took time, but therapy and meditation really helped me. Small steps make a big difference.
+                          </p>
+                        </div>
+                        <div className="text-xs text-white/60 mt-1 text-right">2:35 PM</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                {/* User Input Section */}
+                <div className="border-t border-white/10 bg-gradient-to-r from-black/40 to-black/60">
+                  {/* AI Chat History - Only show if AI assistance is enabled */}
+                  {aiAssistanceEnabled && (
+                    <div className="p-4 border-b border-white/10">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <Bot className="w-4 h-4 text-blue-400" />
+                        <span className="text-blue-300 font-medium text-sm">AI Chat History</span>
+                      </div>
+                      <div className="max-h-24 overflow-y-auto space-y-2">
+                        {aiChatHistory.slice(-2).map((message, index) => (
+                          <div
+                            key={index}
+                            className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
+                          >
+                            <div className={`max-w-[80%]`}>
+                              <div
+                                className={`rounded-lg p-2 text-xs ${
+                                  message.type === "user"
+                                    ? "bg-gradient-to-r from-blue-500/30 to-purple-500/30 text-white border border-blue-400/30"
+                                    : "bg-white/10 text-white/80 border border-white/20"
+                                }`}
+                              >
+                                <p className="leading-relaxed">{message.content}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+  
+                  {/* Main Input Area */}
+                  <div className="p-4">
+                    <div className="flex items-center space-x-3 mb-3">
+                      {/* AI Assistance Toggle */}
+                      <div className="flex items-center space-x-2">
+                        <div
+                          className={`w-10 h-5 rounded-full cursor-pointer transition-all duration-300 ${
+                            aiAssistanceEnabled ? "bg-gradient-to-r from-blue-500 to-purple-500" : "bg-gray-600"
+                          }`}
+                          onClick={() => setAiAssistanceEnabled(!aiAssistanceEnabled)}
+                        >
+                          <div
+                            className={`w-4 h-4 bg-white rounded-full shadow-lg transition-transform duration-300 mt-0.5 ${
+                              aiAssistanceEnabled ? "translate-x-5" : "translate-x-0.5"
+                            }`}
+                          />
+                        </div>
+                        <Bot className={`w-4 h-4 ${aiAssistanceEnabled ? "text-blue-400" : "text-gray-500"}`} />
+                      </div>
+  
+                      {/* Chat Input */}
+                      <div className="flex-1 relative">
+                        <textarea
+                          value={chatInput}
+                          onChange={(e) => setChatInput(e.target.value)}
+                          placeholder="Type your message..."
+                          className="w-full p-3 bg-white/5 border border-white/10 rounded-xl resize-none focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-white placeholder-white/40 text-sm"
+                          rows={2}
+                        />
+                      </div>
+  
+                      {/* Action Buttons */}
+                      <div className="flex items-center space-x-2">
+                        {aiAssistanceEnabled && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="border-blue-400/30 text-blue-300 hover:bg-blue-500/10 bg-transparent rounded-xl px-3 py-2 text-xs"
+                            disabled={!chatInput.trim()}
+                          >
+                            <Bot className="w-3 h-3 mr-1" />
+                            Ask AI
+                          </Button>
+                        )}
+                        <Button
+                          size="sm"
+                          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl px-4 py-2"
+                          disabled={!chatInput.trim()}
+                        >
+                          <MessageCircle className="w-3 h-3 mr-1" />
+                          Send to User
+                        </Button>
+                      </div>
+                    </div>
+  
+                    {/* Quick AI Topics - Only show if AI assistance is enabled */}
+                    {aiAssistanceEnabled && (
+                      <div className="space-y-2">
+                        <div className="text-white/60 text-xs font-medium">Quick AI Topics:</div>
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            onClick={() => setChatInput("How should I respond empathetically?")}
+                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                          >
+                            💡 Empathy tips
+                          </button>
+                          <button
+                            onClick={() => setChatInput("What questions should I ask?")}
+                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                          >
+                            ❓ Question ideas
+                          </button>
+                          <button
+                            onClick={() => setChatInput("Help me understand their emotion")}
+                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                          >
+                            🎯 Emotion analysis
+                          </button>
+                          <button
+                            onClick={() => setChatInput("How to show support without being pushy?")}
+                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                          >
+                            🤝 Support techniques
+                          </button> <button
+                          onClick={() => setChatInput("What's the best way to continue this conversation?")}
+                          className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                        >
+                          💬 Conversation flow
+                        </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+  
+              {/* Floating Elements */}
+              <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-2xl animate-bounce">
+                <Bot className="w-6 h-6 text-white" />
+              </div>
+            </div>
+      )
+    }
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Animated Background Elements */}
@@ -758,8 +1161,8 @@ export default function EmpathiaLanding() {
 
       {/* Share Inner World Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-        <div className="text-center mb-16">
-          <div className="relative inline-block">
+        <div className="text-center mb-8">
+          <div className="relative inline-block mb-16">
             <h3 className="text-4xl font-bold text-white mb-6">
               Share your inner
               <br />
@@ -817,6 +1220,54 @@ export default function EmpathiaLanding() {
         </div>
       </section>
 
+      {/* AI Assistant Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
+                <Bot className="w-5 h-5 text-blue-300" />
+                <span className="text-white font-medium">AI-Powered Communication</span>
+              </div>
+  
+              <h2 className="text-5xl font-bold text-white mb-8 leading-tight">
+                Smart conversation
+                <br />
+                assistance with
+                <br />
+                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+                  AI guidance
+                </span>
+              </h2>
+  
+              <p className="text-xl text-white/80 mb-8 leading-relaxed">
+                Our AI analyzes conversations in real-time, suggests thoughtful responses, and provides instant guidance
+                during your emotional conversations.
+              </p>
+  
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl flex items-center justify-center">
+                    <MessageCircle className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white font-medium">Real-time message analysis and tone assessment</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center">
+                    <Sparkles className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white font-medium">Smart response suggestions based on context</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-400 rounded-2xl flex items-center justify-center">
+                    <Bot className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white font-medium">Optional AI assistance toggle for privacy</span>
+                </div>
+              </div>
+            </div>
+           <AIAssistantSection/>
+          </div>
+        </section>
       {/* 3 Simple Steps Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="text-center mb-16">
