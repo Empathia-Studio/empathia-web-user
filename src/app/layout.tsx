@@ -4,6 +4,8 @@ import "@/styles/globals.css";
 import ModernNavbar from "@/components/navbar";
 import ModernFooter from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from "@/lib/contexts/AuthContext";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,7 +31,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
+        <AuthProvider>
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
@@ -41,6 +44,7 @@ export default function RootLayout({
               <ModernFooter />
             </div>
           </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

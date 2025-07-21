@@ -1,12 +1,19 @@
 "use client"
 
-import { Bell, MessageCircle, Moon, Sun, User as UserIcon } from "lucide-react"
+import { Bell, MessageCircle, Moon, Sun, User as UserIcon, LogOut, BookText, Layout } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import {authService} from "@/lib/services/authService"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { useEffect, useState } from "react"
-import User from "@/models/User"
 import { useRouter } from 'next/navigation';
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useAuth } from "@/lib/contexts/AuthContext"
 
 export default function ModernNavbar() {
   const navigationItems = [
@@ -14,20 +21,12 @@ export default function ModernNavbar() {
     { name: "Diary", href: "/diary" },
     { name: "Playground", href: "/playground" },
     { name: "About", href: "/about" },
-]
-const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  useEffect(() => {
-    const userStr = localStorage.getItem('user');
-    if(userStr) {
-      setIsLoggedIn(true);
-      setUser(JSON.parse(userStr));
-    }
-  },[]);
+  ]
+  const router = useRouter();
+  const { isLoggedIn, user, setAuthState } = useAuth();
 
   return (
-    <div className="flex justify-center w-full py-6 ">
+    <div className="flex justify-center w-full py-6">
       <nav className="flex items-center justify-between bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg max-w-4xl w-full mx-4">
         {/* Logo */}
         <div className="flex items-center">
@@ -73,17 +72,40 @@ const router = useRouter();
           {/* User Profile */}
           <div className="flex items-center space-x-3 pl-2">
             {isLoggedIn && user ? (
-              <div className="flex items-center space-x-3">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={user.avatar} alt="User" />
-                  <AvatarFallback className="bg-gray-700 text-white">
-                    <UserIcon className="h-4 w-4" />
-                  </AvatarFallback>
-                </Avatar>
-                <span className="text-gray-300 font-medium hidden sm:block">{user.displayName}</span>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex items-center space-x-3 cursor-pointer">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.avatar} alt="User" />
+                      <AvatarFallback className="bg-gray-700 text-white">
+                        <UserIcon className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-gray-300 font-medium hidden sm:block">{user.displayName}</span>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => router.push('/wall')}>
+                    <Layout className="mr-2 h-4 w-4" />
+                    <span>My Wall</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push('/diary')}>
+                    <BookText className="mr-2 h-4 w-4" />
+                    <span>My Diary</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => {
+                    authService.logout().then(() => {
+                      setAuthState(false, null);
+                      router.push('/auth/login');
+                    });
+                  }}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Logout</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
-              <Button onClick={()=>router.push('/auth/login')} variant="ghost" className="text-gray-700 bg-white  hover:bg-gray-300 rounded-full">
+              <Button onClick={()=>router.push('/auth/login')} variant="ghost" className="text-gray-700 bg-white hover:bg-gray-300 rounded-full">
                 Sign In
               </Button>
             )}

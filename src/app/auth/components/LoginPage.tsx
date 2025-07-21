@@ -9,6 +9,8 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuth } from "@/lib/contexts/AuthContext";
+import User from '@/models/User';
 interface LoginFormData {
   email: string;
   password: string;
@@ -36,6 +38,7 @@ const GoogleIcon = () => (
 
 const LoginPage = () => {
     const router = useRouter();
+    const { setAuthState } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, watch, formState: { errors }, setError, setValue } = useForm<LoginFormData>({
         defaultValues: {
@@ -49,7 +52,6 @@ const LoginPage = () => {
     const loginWithGoogle = useGoogleLogin({
         onSuccess: async (codeResponse) => {
             try {
-                // Đổi code lấy tokens
                 const tokens = await axios.post('https://oauth2.googleapis.com/token', {
                     code: codeResponse.code,
                     client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
@@ -57,15 +59,13 @@ const LoginPage = () => {
                     redirect_uri: window.location.origin,
                     grant_type: 'authorization_code',
                 });
-                console.log("tokens: ", tokens.data);
 
-                // Gửi id_token cho backend
                 const res = await authService.loginWithGoogle(tokens.data.id_token);
-                console.log("Backend response: ", res);
-                
                 if (res.token) {
+                    const userData = res.user as User;
                     localStorage.setItem('auth_token', res.token);
-                    localStorage.setItem('user', JSON.stringify(res.user));
+                    localStorage.setItem('user', JSON.stringify(userData));
+                    setAuthState(true, userData);
                     router.push('/chat');
                 }
             } catch (error) {
@@ -78,31 +78,41 @@ const LoginPage = () => {
 
     const onSubmit = async (data:LoginFormData) => {
       const userResponse = await authService.getByEmail(data.email);
-      console.log("userResponse: ", userResponse);
-      if(!userResponse.isEmailVerified){
-        console.log("Email not verified");
+      if(!userResponse?.data) {
+        setError("email", {
+          type: "manual",
+          message: "Email not found"
+        });
         return;
       }
       
-      if(!showPassword && userResponse.passwordHash !== null){
+      if(!userResponse.data.isEmailVerified){
+        setError("email", {
+          type: "manual",
+          message: "Please verify your email first"
+        });
+        return;
+      }
+      
+      if(!showPassword && userResponse.data.passwordHash !== null){
         setShowPassword(true);
         return;
       }
 
       // Nếu không có password, login luôn
-      if(userResponse.passwordHash === null){
+      if(userResponse.data.passwordHash === null){
         data.password = "";
       }
       const res = await authService.loginWithEmail(data.email, data.password);
-      console.log("Backend response: ", res);
-      if (res && res.token) {
-        localStorage.setItem('auth_token', res.token);
-        localStorage.setItem('user', JSON.stringify(res.user));
+      if (res.data?.token) {
+        localStorage.setItem('auth_token', res.data.token);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        setAuthState(true, res.data.user);
         router.push('/chat');
       } else {
-        setError("root", {
+        setError("password", {
           type: "manual",
-          message: "Login failed. Please try again."
+          message: res.error || "Login failed. Please try again."
         });
       }
     }
