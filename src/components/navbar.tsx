@@ -30,7 +30,7 @@ export default function ModernNavbar() {
       <div className="flex justify-center w-full py-4 ">
         <nav className="flex items-center justify-between bg-card dark:bg-card text-card-foreground px-6 py-3 rounded-full shadow-lg dark:shadow-white/10 max-w-4xl w-full mx-4 transition-all duration-300">
           {/* Logo */}
-          <div className="flex items-center" onClick={()=>router.push('/')}>
+          <div className="flex items-center cursor-pointer" onClick={()=>router.push('/')}>
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <div className="w-6 h-6 bg-background rounded-full relative">
                 <div className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></div>
