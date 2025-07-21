@@ -19,7 +19,7 @@ const ResendVerification = () => {
     const onSubmit = async (data: ResendVerificationFormData) => {
         try {
             const res = await authService.resendVerification(data.email);
-            if (res?.status === 200) {
+            if (res?.data) {
                 // Hiển thị thông báo thành công
                 alert('Verification email has been sent. Please check your inbox.');
                 router.push('/auth/login');
