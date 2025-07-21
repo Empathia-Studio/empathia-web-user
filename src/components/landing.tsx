@@ -1031,33 +1031,27 @@ export default function EmpathiaLanding() {
               <br />
               with Empathia
             </h1>
-
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Connect with people who truly understand you. Share your deepest thoughts anonymously and find your tribe
               in a safe, supportive community.
             </p>
-
             <Button
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-4 rounded-full text-lg font-bold shadow-2xl hover:scale-105 transition-all duration-300"
             >
               Start sharing
             </Button>
-
             {/* Story Composer */}
             <div className="mt-16">
               <StoryComposer />
             </div>
           </div>
-
           <div className="relative">
             <StoryFeed />
-
             {/* 3D Character */}
             <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary rounded-full flex items-center justify-center shadow-2xl animate-bounce">
               <Heart className="w-16 h-16 text-primary-foreground" />
             </div>
-
             {/* Curved Lines */}
             <div className="absolute top-1/2 -right-20 w-96 h-96 opacity-30">
               <svg viewBox="0 0 400 400" className="w-full h-full">
@@ -1080,16 +1074,60 @@ export default function EmpathiaLanding() {
         </div>
       </section>
 
+      {/* AI Assistant Section - moved up */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
+              <Bot className="w-5 h-5 text-blue-300" />
+              <span className="text-white font-medium">AI-Powered Communication</span>
+            </div>
+            <h2 className="text-5xl font-bold text-white mb-8 leading-tight">
+              Smart conversation
+              <br />
+              assistance with
+              <br />
+              <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+                AI guidance
+              </span>
+            </h2>
+            <p className="text-xl text-white/80 mb-8 leading-relaxed">
+              Our AI analyzes conversations in real-time, suggests thoughtful responses, and provides instant guidance
+              during your emotional conversations.
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-white font-medium">Real-time message analysis and tone assessment</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-white font-medium">Smart response suggestions based on context</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-400 rounded-2xl flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-white font-medium">Optional AI assistance toggle for privacy</span>
+              </div>
+            </div>
+          </div>
+          <AIAssistantSection />
+        </div>
+      </section>
+
       {/* Stories Unite Hearts Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-6">Stories unite hearts</h2>
         </div>
-
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <TrendingDashboard />
-
             {/* Orbital Rings */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div
@@ -1102,7 +1140,6 @@ export default function EmpathiaLanding() {
               ></div>
             </div>
           </div>
-
           <div>
             <h3 className="text-4xl font-bold text-white mb-6">
               Explore the emotions
@@ -1114,71 +1151,6 @@ export default function EmpathiaLanding() {
               experiences and emotions.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Create Emotion Journals Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h3 className="text-4xl font-bold text-white mb-6">Create emotion journals</h3>
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
-              Document your emotional journey with private journals. Track your feelings, reflect on your growth, and
-              create a personal space for healing.
-            </p>
-          </div>
-
-          <div className="relative">
-            <JournalInterface />
-
-            {/* Floating Elements */}
-            <div className="absolute top-10 -right-10 w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
-              <Smile className="w-8 h-8 text-black" />
-            </div>
-            <div
-              className="absolute bottom-10 -left-10 w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
-              style={{ animationDelay: "0.5s" }}
-            >
-              <Heart className="w-8 h-8 text-white" />
-            </div>
-            <div
-              className="absolute top-1/2 -right-16 w-12 h-12 bg-green-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
-              style={{ animationDelay: "1s" }}
-            >
-              <Sparkles className="w-6 h-6 text-white" />
-            </div>
-
-            {/* Orbital Ring */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div
-                className="w-[400px] h-[400px] border-4 border-white/20 rounded-full animate-spin"
-                style={{ animationDuration: "25s" }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Share Inner World Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-        <div className="text-center mb-8">
-          <div className="relative inline-block mb-16">
-            <h3 className="text-4xl font-bold text-white mb-6">
-              Share your inner
-              <br />
-              emotional world
-              <br />
-              with soulmates
-            </h3>
-
-            {/* Curved Background */}
-            <div className="absolute -inset-8 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-[3rem] -z-10"></div>
-          </div>
-
-          <p className="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
-            Connect with people who understand your journey. Share your thoughts, feelings, and experiences in a safe,
-            supportive environment.
-          </p>
         </div>
       </section>
 
@@ -1196,10 +1168,8 @@ export default function EmpathiaLanding() {
               shared experiences and emotions.
             </p>
           </div>
-
           <div className="relative">
             <SoulProfilesGrid />
-
             {/* Scattered Profile Cards */}
             <div className="absolute -top-10 -left-10 w-20 h-20 bg-white rounded-2xl shadow-lg p-2 animate-float">
               <div className="w-full h-full bg-purple-200 rounded-xl"></div>
@@ -1220,54 +1190,45 @@ export default function EmpathiaLanding() {
         </div>
       </section>
 
-      {/* AI Assistant Section */}
+      {/* Create Emotion Journals Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
-                <Bot className="w-5 h-5 text-blue-300" />
-                <span className="text-white font-medium">AI-Powered Communication</span>
-              </div>
-  
-              <h2 className="text-5xl font-bold text-white mb-8 leading-tight">
-                Smart conversation
-                <br />
-                assistance with
-                <br />
-                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-                  AI guidance
-                </span>
-              </h2>
-  
-              <p className="text-xl text-white/80 mb-8 leading-relaxed">
-                Our AI analyzes conversations in real-time, suggests thoughtful responses, and provides instant guidance
-                during your emotional conversations.
-              </p>
-  
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl flex items-center justify-center">
-                    <MessageCircle className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white font-medium">Real-time message analysis and tone assessment</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center">
-                    <Sparkles className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white font-medium">Smart response suggestions based on context</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-400 rounded-2xl flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white font-medium">Optional AI assistance toggle for privacy</span>
-                </div>
-              </div>
-            </div>
-           <AIAssistantSection/>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h3 className="text-4xl font-bold text-white mb-6">Create emotion journals</h3>
+            <p className="text-xl text-white/80 leading-relaxed mb-8">
+              Document your emotional journey with private journals. Track your feelings, reflect on your growth, and
+              create a personal space for healing.
+            </p>
           </div>
-        </section>
+          <div className="relative">
+            <JournalInterface />
+            {/* Floating Elements */}
+            <div className="absolute top-10 -right-10 w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
+              <Smile className="w-8 h-8 text-black" />
+            </div>
+            <div
+              className="absolute bottom-10 -left-10 w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <Heart className="w-8 h-8 text-white" />
+            </div>
+            <div
+              className="absolute top-1/2 -right-16 w-12 h-12 bg-green-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
+              style={{ animationDelay: "1s" }}
+            >
+              <Sparkles className="w-6 h-6 text-white" />
+            </div>
+            {/* Orbital Ring */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div
+                className="w-[400px] h-[400px] border-4 border-white/20 rounded-full animate-spin"
+                style={{ animationDuration: "25s" }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3 Simple Steps Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="text-center mb-16">
@@ -1277,7 +1238,6 @@ export default function EmpathiaLanding() {
             in 3 simple steps
           </h2>
         </div>
-
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="bg-black/80 backdrop-blur-xl border border-white/20">
             <CardContent className="p-8 text-center">
@@ -1290,7 +1250,6 @@ export default function EmpathiaLanding() {
               </p>
             </CardContent>
           </Card>
-
           <Card className="bg-black/80 backdrop-blur-xl border border-white/20">
             <CardContent className="p-8 text-center">
               <div className="w-20 h-20 bg-gray-800 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
@@ -1302,7 +1261,6 @@ export default function EmpathiaLanding() {
               </p>
             </CardContent>
           </Card>
-
           <Card className="bg-black/80 backdrop-blur-xl border border-white/20">
             <CardContent className="p-8 text-center">
               <div className="w-20 h-20 bg-gray-700 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
@@ -1322,7 +1280,6 @@ export default function EmpathiaLanding() {
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-6">Any questions?</h2>
         </div>
-
         <div className="space-y-4">
           {faqItems.map((item, index) => (
             <Card key={index} className="bg-black/80 backdrop-blur-xl border border-white/20">
@@ -1360,7 +1317,6 @@ export default function EmpathiaLanding() {
               <br />
               with Empathia
             </h2>
-
             {/* 3D Characters */}
             <div className="absolute -top-10 -left-20 w-24 h-24 bg-primary rounded-full flex items-center justify-center shadow-2xl animate-bounce">
               <Heart className="w-12 h-12 text-primary-foreground" />
@@ -1372,7 +1328,6 @@ export default function EmpathiaLanding() {
               <Users className="w-12 h-12 text-secondary-foreground" />
             </div>
           </div>
-
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition-all duration-300"
