@@ -523,7 +523,7 @@ export default function EmpathiaLanding() {
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-4 border border-purple-400/20 hover:border-purple-400/40 transition-all cursor-pointer">
             <div className="flex items-center space-x-3 mb-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center ">
                 <Heart className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
               <div>
@@ -1171,18 +1171,20 @@ export default function EmpathiaLanding() {
           <div className="relative">
             <SoulProfilesGrid />
             {/* Scattered Profile Cards */}
-            <div className="absolute -top-10 -left-10 w-20 h-20 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-float">
+            <div className="absolute -top-10 -left-10 w-20 h-20 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-bounce duration-1000"
+            style={{ animationDelay: "0.5s" }}
+            >
               <div className="w-full h-full bg-purple-200 rounded-xl"></div>
             </div>
             <div
-              className="absolute -bottom-10 -right-10 w-20 h-20 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-float"
+              className="absolute -bottom-10 -right-10 w-20 h-20 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-bounce duration-1000"
               style={{ animationDelay: "1s" }}
             >
               <div className="w-full h-full bg-blue-200 rounded-xl"></div>
             </div>
             <div
-              className="absolute top-1/4 -right-16 w-16 h-16 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-float"
-              style={{ animationDelay: "2s" }}
+              className="absolute top-1/4 -right-16 w-16 h-16 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-bounce duration-1000"
+              style={{ animationDelay: "25s" }}
             >
               <div className="w-full h-full bg-green-200 rounded-xl"></div>
             </div>
@@ -1204,7 +1206,7 @@ export default function EmpathiaLanding() {
             <JournalInterface />
             {/* Floating Elements */}
             <div className="absolute top-10 -right-10 w-16 h-16 bg-gray-900 dark:bg-white rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
-              <Smile className="w-8 h-8 text-white" />
+              <Smile className="w-8 h-8 text-white dark:text-black" />
             </div>
             <div
               className="absolute bottom-10 -left-10 w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
