@@ -5,6 +5,7 @@ import ModernNavbar from "@/components/navbar";
 import ModernFooter from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/lib/contexts/AuthContext";
+import { EnvIndicator } from "@/components/env-indicator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +41,9 @@ export default function RootLayout({
           >
             <div className="flex flex-col min-h-screen">
               <ModernNavbar />
-              <main className="flex-grow">{children}</main>
+              <main className="flex-grow pt-24">{children}</main>
               <ModernFooter />
+              <EnvIndicator />
             </div>
           </ThemeProvider>
         </AuthProvider>

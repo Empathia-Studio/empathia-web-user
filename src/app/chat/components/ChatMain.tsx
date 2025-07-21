@@ -10,9 +10,9 @@ export default function ChatMain() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-
+    const url = process.env.NEXT_PUBLIC_SOCKET_URL;
     const newConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:8000/chatHub', {
+      .withUrl(`${url}/chatHub`, {
         withCredentials: true,
       })
       .configureLogging(signalR.LogLevel.Information)
