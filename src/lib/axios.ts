@@ -1,16 +1,13 @@
 import axios from 'axios';
-import { redirect } from 'next/navigation';
-
-const API_URL = process.env.NEXT_PUBLIC_AUTH_API_URL;
 
 const axiosInstance = axios.create({
-    baseURL: API_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// Request interceptor
+// Add a request interceptor
 axiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('auth_token');
@@ -24,35 +21,38 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-// Response interceptor
+// Add a response interceptor
 axiosInstance.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
 
-        // Nếu lỗi 401 (Unauthorized) và chưa thử refresh token
+        // If error is 401 and we haven't retried yet
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
             try {
-                // Thử refresh token
+                // Try to refresh token
                 const refreshToken = localStorage.getItem('refresh_token');
-                if (refreshToken) {
-                    const response = await axios.post(`${API_URL}/auth/refresh-token`, {
-                        refreshToken
-                    });
-
-                    const { token: newToken } = response.data;
-                    localStorage.setItem('auth_token', newToken);
-
-                    // Thử lại request cũ với token mới
-                    originalRequest.headers.Authorization = `Bearer ${newToken}`;
-                    return axiosInstance(originalRequest);
+                if (!refreshToken) {
+                    throw new Error('No refresh token');
                 }
+
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`, {
+                    refreshToken
+                });
+
+                const { token } = response.data;
+                localStorage.setItem('auth_token', token);
+
+                // Retry original request with new token
+                originalRequest.headers.Authorization = `Bearer ${token}`;
+                return axiosInstance(originalRequest);
             } catch (refreshError) {
-                // Nếu refresh token thất bại, logout và chuyển về trang login
+                // If refresh fails, logout user
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('refresh_token');
+                localStorage.removeItem('user');
                 window.location.href = '/auth/login';
                 return Promise.reject(refreshError);
             }

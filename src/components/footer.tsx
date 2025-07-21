@@ -39,7 +39,7 @@ export default function ModernFooter() {
   ]
 
   return (
-    <footer className=" text-white border-t border-gray-800">
+    <footer className=" text-white border-t border-gray-800 px-24">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Section - Logo and Description */}

@@ -1,6 +1,6 @@
-import Link from "next/link";
+import EmpathiaLanding from "@/components/landing";
 export default function Home() {
   return (
-    <Link href="/auth/login">Login</Link>
+    <EmpathiaLanding/>
   );
 }
