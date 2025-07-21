@@ -6,7 +6,7 @@ import ModernFooter from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/lib/contexts/AuthContext";
 import { EnvIndicator } from "@/components/env-indicator";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -43,7 +43,8 @@ export default function RootLayout({
               <ModernNavbar />
               <main className="flex-grow pt-24">{children}</main>
               <ModernFooter />
-              <EnvIndicator />
+              <EnvIndicator /> 
+              <SpeedInsights />
             </div>
           </ThemeProvider>
         </AuthProvider>
