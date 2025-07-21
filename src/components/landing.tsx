@@ -107,7 +107,7 @@ export default function EmpathiaLanding() {
 
     return (
       <div className="max-w-2xl mx-auto mb-16 relative z-10">
-        <Card className="story-composer bg-black/20 backdrop-blur-xl border border-white/10 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
+        <Card className="story-composer bg-gray-50 dark:bg-black/80 border border-gray-200 dark:border-white/10 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
           <CardContent className="p-8">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
@@ -116,13 +116,13 @@ export default function EmpathiaLanding() {
                   <EyeOff className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white text-lg">Anonymous #8386</div>
-                  <div className="text-sm text-purple-200">Your story will be completely private</div>
+                  <div className="font-semibold text-gray-900 dark:text-white text-lg">Anonymous #8386</div>
+                  <div className="text-sm text-purple-600 dark:text-purple-200">Your story will be completely private</div>
                 </div>
               </div>
 
               <div className="flex items-center space-x-3">
-                <span className="text-sm text-purple-200">Anonymous</span>
+                <span className="text-sm text-purple-600 dark:text-purple-200">Anonymous</span>
                 <div
                   className={`w-14 h-7 rounded-full cursor-pointer transition-all duration-300 ${
                     isAnonymous ? "bg-gradient-to-r from-purple-500 to-pink-500" : "bg-gray-600"
@@ -145,11 +145,11 @@ export default function EmpathiaLanding() {
                 onChange={(e) => setStoryText(e.target.value)}
                 onFocus={() => setIsExpanded(true)}
                 placeholder="How are you feeling today? Share what's on your mind..."
-                className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl resize-none focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-white placeholder-purple-200/60 text-lg"
+                className="w-full p-6 bg-white dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl resize-none focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-purple-200/40 text-lg"
                 rows={isExpanded ? 5 : 3}
                 maxLength={maxLength}
               />
-              <div className="absolute bottom-4 right-4 text-sm text-purple-200/60">
+              <div className="absolute bottom-4 right-4 text-sm  text-purple-500 dark:text-purple-200/60">
                 {storyText.length}/{maxLength}
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function EmpathiaLanding() {
             {/* Emotion Selector */}
             {isExpanded && (
               <div className="mb-6 animate-in slide-in-from-top duration-500">
-                <div className="text-sm text-purple-200 mb-3 font-medium">How are you feeling?</div>
+                <div className="text-sm text-purple-600 dark:text-purple-200 mb-3 font-medium">How are you feeling?</div>
                 <div className="flex space-x-4">
                   {emotions.map((emotion, index) => {
                     const Icon = emotion.icon
@@ -172,7 +172,7 @@ export default function EmpathiaLanding() {
                         }`}
                       >
                         <Icon className={`w-6 h-6 ${selectedEmotion === index ? emotion.color : "text-white/60"}`} />
-                        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-purple-200 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-purple-600 dark:text-purple-200 opacity-0 group-hover:opacity-100 transition-opacity">
                           {emotion.name}
                         </div>
                       </button>
@@ -184,7 +184,7 @@ export default function EmpathiaLanding() {
 
             {/* Action Buttons */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-6 text-sm text-purple-200/80">
+              <div className="flex items-center space-x-6 text-sm text-purple-500 dark:text-purple-200/80">
                 <div className="flex items-center space-x-2">
                   <Shield className="w-4 h-4" />
                   <span>100% Secure</span>
@@ -204,7 +204,7 @@ export default function EmpathiaLanding() {
                       setIsExpanded(false)
                       setStoryText("")
                     }}
-                    className="rounded-xl border-white/20 text-white hover:bg-white/10"
+                    className="rounded-xl border-white/20 text-gray-900 dark:text-white hover:bg-white/10"
                   >
                     Cancel
                   </Button>
@@ -245,11 +245,11 @@ export default function EmpathiaLanding() {
   // Story Feed Component
   const StoryFeed = () => {
     return (
-      <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+      <div className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 rounded-3xl p-8 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-white">Anonymous Stories</h3>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Anonymous Stories</h3>
           <div className="flex items-center space-x-2">
-            <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10 bg-transparent">
+            <Button size="sm" variant="outline" className="border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:bg-white/10 bg-transparent">
               <Filter className="w-4 h-4 mr-2" />
               Filter
             </Button>
@@ -257,15 +257,15 @@ export default function EmpathiaLanding() {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all">
+          <div className="bg-gray-100 dark:bg-white/5 rounded-2xl p-6 border border-gray-200 dark:border-white/20 hover:border-gray-300 dark:hover:border-white/30 transition-all">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                  <EyeOff className="w-6 h-6 text-white" />
+                  <EyeOff className="w-6 h-6 text-gray-900 dark:text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Anonymous #2158</div>
-                  <div className="text-white/60 text-sm flex items-center">
+                  <div className="text-gray-900 dark:text-white font-medium">Anonymous #2158</div>
+                  <div className="text-gray-700 dark:text-white/80 text-sm flex items-center">
                     <Clock className="w-4 h-4 mr-1" />2 hours ago
                   </div>
                 </div>
@@ -275,17 +275,17 @@ export default function EmpathiaLanding() {
                 <TrendingUp className="w-4 h-4 text-green-400" />
               </div>
             </div>
-            <p className="text-white/90 mb-4 leading-relaxed">
+            <p className="text-gray-900 dark:text-white/90 mb-4 leading-relaxed">
               "Finally found the courage to share my story after months of keeping it inside. This community has given
               me hope that I'm not alone in this journey..."
             </p>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-6">
-                <button className="flex items-center space-x-2 text-white/60 hover:text-pink-400 transition-colors">
+                <button className="flex items-center space-x-2 text-gray-900 dark:text-white/60 hover:text-pink-400 transition-colors">
                   <Heart className="w-5 h-5" />
                   <span>247</span>
                 </button>
-                <button className="flex items-center space-x-2 text-white/60 hover:text-blue-400 transition-colors">
+                <button className="flex items-center space-x-2 text-gray-900 dark:text-white/60 hover:text-blue-400 transition-colors">
                   <MessageCircle className="w-5 h-5" />
                   <span>89</span>
                 </button>
@@ -293,22 +293,22 @@ export default function EmpathiaLanding() {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 bg-transparent"
+                className="border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:bg-white/10 bg-transparent"
               >
                 Connect
               </Button>
             </div>
           </div>
 
-          <div className="bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all">
+          <div className="bg-gray-100 dark:bg-white/5 rounded-2xl p-6 border border-gray-200 dark:border-white/20 hover:border-gray-300 dark:hover:border-white/30 transition-all">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center">
-                  <EyeOff className="w-6 h-6 text-white" />
+                  <EyeOff className="w-6 h-6 text-gray-900 dark:text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Anonymous #2743</div>
-                  <div className="text-white/60 text-sm flex items-center">
+                  <div className="text-gray-900 dark:text-white font-medium">Anonymous #2743</div>
+                  <div className="text-gray-700 dark:text-white/80 text-sm flex items-center">
                     <Clock className="w-4 h-4 mr-1" />5 hours ago
                   </div>
                 </div>
@@ -318,17 +318,17 @@ export default function EmpathiaLanding() {
                 <Star className="w-4 h-4 text-yellow-400" />
               </div>
             </div>
-            <p className="text-white/90 mb-4 leading-relaxed">
+            <p className="text-gray-900 dark:text-white/90 mb-4 leading-relaxed">
               "Today I learned that it's okay to not be okay. Sometimes the strongest thing you can do is admit you need
               help..."
             </p>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-6">
-                <button className="flex items-center space-x-2 text-white/60 hover:text-pink-400 transition-colors">
+                <button className="flex items-center space-x-2 text-gray-900 dark:text-white/60 hover:text-pink-400 transition-colors">
                   <Heart className="w-5 h-5" />
                   <span>1.2k</span>
                 </button>
-                <button className="flex items-center space-x-2 text-white/60 hover:text-blue-400 transition-colors">
+                <button className="flex items-center space-x-2 text-gray-900 dark:text-white/60 hover:text-blue-400 transition-colors">
                   <MessageCircle className="w-5 h-5" />
                   <span>156</span>
                 </button>
@@ -336,7 +336,7 @@ export default function EmpathiaLanding() {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 bg-transparent"
+                className="border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:bg-white/10 bg-transparent"
               >
                 Connect
               </Button>
@@ -350,10 +350,10 @@ export default function EmpathiaLanding() {
   // Trending Dashboard Component
   const TrendingDashboard = () => {
     return (
-      <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+      <div className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 rounded-3xl p-8 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-white">Trending Emotions</h3>
-          <div className="flex items-center space-x-2 text-white/60">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Trending Emotions</h3>
+          <div className="flex items-center space-x-2 text-gray-700 dark:text-white/60">
             <TrendingUp className="w-5 h-5" />
             <span className="text-sm">Live updates</span>
           </div>
@@ -363,61 +363,61 @@ export default function EmpathiaLanding() {
           <div className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-2xl p-4 border border-pink-400/30">
             <div className="flex items-center justify-between mb-2">
               <Heart className="w-8 h-8 text-pink-400" />
-              <span className="text-2xl font-bold text-white">1.2k</span>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">1.2k</span>
             </div>
             <div className="text-pink-300 font-medium">Love & Support</div>
-            <div className="text-white/60 text-sm">+23% today</div>
+            <div className="text-gray-700 dark:text-white/60 text-sm">+23% today</div>
           </div>
 
           <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl p-4 border border-blue-400/30">
             <div className="flex items-center justify-between mb-2">
               <Frown className="w-8 h-8 text-blue-400" />
-              <span className="text-2xl font-bold text-white">892</span>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">892</span>
             </div>
             <div className="text-blue-300 font-medium">Seeking Help</div>
-            <div className="text-white/60 text-sm">+15% today</div>
+            <div className="text-gray-700 dark:text-white/60 text-sm">+15% today</div>
           </div>
 
           <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-2xl p-4 border border-yellow-400/30">
             <div className="flex items-center justify-between mb-2">
               <Smile className="w-8 h-8 text-yellow-400" />
-              <span className="text-2xl font-bold text-white">2.1k</span>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">2.1k</span>
             </div>
             <div className="text-yellow-300 font-medium">Joy & Hope</div>
-            <div className="text-white/60 text-sm">+31% today</div>
+            <div className="text-gray-700 dark:text-white/60 text-sm">+31% today</div>
           </div>
 
           <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-2xl p-4 border border-green-400/30">
             <div className="flex items-center justify-between mb-2">
               <Sparkles className="w-8 h-8 text-green-400" />
-              <span className="text-2xl font-bold text-white">567</span>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">567</span>
             </div>
             <div className="text-green-300 font-medium">Growth</div>
-            <div className="text-white/60 text-sm">+18% today</div>
+            <div className="text-gray-700 dark:text-white/60 text-sm">+18% today</div>
           </div>
         </div>
 
         <div className="space-y-3">
-          <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
+          <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-white/5 rounded-xl">
             <div className="flex items-center space-x-3">
               <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
-              <span className="text-white/90 text-sm">"How I overcame my anxiety"</span>
+              <span className="text-gray-900 dark:text-white/90 text-sm">"How I overcame my anxiety"</span>
             </div>
-            <span className="text-white/60 text-xs">🔥 Trending</span>
+            <span className="text-gray-700 dark:text-white/60 text-xs">🔥 Trending</span>
           </div>
-          <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
+          <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-white/5 rounded-xl">
             <div className="flex items-center space-x-3">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-white/90 text-sm">"Finding hope in dark times"</span>
+              <span className="text-gray-900 dark:text-white/90 text-sm">"Finding hope in dark times"</span>
             </div>
-            <span className="text-white/60 text-xs">🔥 Trending</span>
+            <span className="text-gray-700 dark:text-white/60 text-xs">🔥 Trending</span>
           </div>
-          <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
+          <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-white/5 rounded-xl">
             <div className="flex items-center space-x-3">
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-              <span className="text-white/90 text-sm">"Building self-confidence"</span>
+              <span className="text-gray-900 dark:text-white/90 text-sm">"Building self-confidence"</span>
             </div>
-            <span className="text-white/60 text-xs">🔥 Trending</span>
+            <span className="text-gray-700 dark:text-white/60 text-xs">🔥 Trending</span>
           </div>
         </div>
       </div>
@@ -427,10 +427,10 @@ export default function EmpathiaLanding() {
   // Journal Interface Component
   const JournalInterface = () => {
     return (
-      <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+      <div className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 rounded-3xl p-8 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-white">My Emotion Journal</h3>
-          <Button size="sm" className="bg-white text-black hover:bg-gray-100">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">My Emotion Journal</h3>
+          <Button size="sm" className="bg-gray-900 dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200">
             <Plus className="w-4 h-4 mr-2" />
             New Entry
           </Button>
@@ -444,13 +444,13 @@ export default function EmpathiaLanding() {
                   <BookOpen className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Today's Reflection</div>
-                  <div className="text-white/60 text-sm">March 15, 2024</div>
+                  <div className="text-gray-900 dark:text-white font-medium">Today's Reflection</div>
+                  <div className="text-gray-700 dark:text-white/80 text-sm">March 15, 2024</div>
                 </div>
               </div>
               <Smile className="w-6 h-6 text-yellow-400" />
             </div>
-            <p className="text-white/90 text-sm leading-relaxed">
+            <p className="text-gray-900 dark:text-white/90 text-sm leading-relaxed">
               "Feeling more optimistic today. The conversation with my therapist helped me see things from a different
               perspective..."
             </p>
@@ -463,23 +463,23 @@ export default function EmpathiaLanding() {
                   <BookOpen className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Weekly Check-in</div>
-                  <div className="text-white/60 text-sm">March 10, 2024</div>
+                  <div className="text-gray-900 dark:text-white font-medium">Weekly Check-in</div>
+                  <div className="text-gray-700 dark:text-white/80 text-sm">March 10, 2024</div>
                 </div>
               </div>
               <Heart className="w-6 h-6 text-pink-400" />
             </div>
-            <p className="text-white/90 text-sm leading-relaxed">
+            <p className="text-gray-900 dark:text-white/90 text-sm leading-relaxed">
               "This week has been challenging but I'm learning to be more patient with myself. Small progress is still
               progress..."
             </p>
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-2xl p-4">
+        <div className="bg-gray-100 dark:bg-white/5 rounded-2xl p-4">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-white/80 text-sm font-medium">Mood Tracker</span>
-            <span className="text-white/60 text-xs">This week</span>
+            <span className="text-gray-700 dark:text-white/80 text-sm font-medium">Mood Tracker</span>
+            <span className="text-gray-700 dark:text-white/60 text-xs">This week</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex space-x-2">
@@ -509,11 +509,11 @@ export default function EmpathiaLanding() {
   // Soul Profiles Grid Component
   const SoulProfilesGrid = () => {
     return (
-      <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+      <div className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 rounded-3xl p-8 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-white">Soul Connections</h3>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Soul Connections</h3>
           <div className="flex items-center space-x-2">
-            <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10 bg-transparent">
+            <Button size="sm" variant="outline" className="border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:bg-white/10 bg-transparent">
               <Search className="w-4 h-4 mr-2" />
               Discover
             </Button>
@@ -524,18 +524,18 @@ export default function EmpathiaLanding() {
           <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl p-4 border border-purple-400/20 hover:border-purple-400/40 transition-all cursor-pointer">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
+                <Heart className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Anonymous #2743</div>
-                <div className="text-white/60 text-xs">92% compatibility</div>
+                <div className="text-gray-900 dark:text-white font-medium">Anonymous #2743</div>
+                <div className="text-gray-700 dark:text-white/60 text-xs">92% compatibility</div>
               </div>
             </div>
-            <p className="text-white/80 text-sm mb-3">
+            <p className="text-gray-900 dark:text-white/80 text-sm mb-3">
               "Shares stories about overcoming challenges and finding inner strength..."
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">Hope</span>
+              <span className="bg-purple-100 text-purple-700 dark:text-purple-300 px-2 py-1 rounded text-xs">Hope</span>
               <span className="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">Growth</span>
             </div>
           </div>
@@ -543,14 +543,14 @@ export default function EmpathiaLanding() {
           <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl p-4 border border-blue-400/20 hover:border-blue-400/40 transition-all cursor-pointer">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center">
-                <Users className="w-6 h-6 text-white" />
+                <Users className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Anonymous #2163</div>
-                <div className="text-white/60 text-xs">87% compatibility</div>
+                <div className="text-gray-900 dark:text-white font-medium">Anonymous #2163</div>
+                <div className="text-gray-700 dark:text-white/60 text-xs">87% compatibility</div>
               </div>
             </div>
-            <p className="text-white/80 text-sm mb-3">
+            <p className="text-gray-900 dark:text-white/80 text-sm mb-3">
               "Offers support and kind words to those who need encouragement..."
             </p>
             <div className="flex flex-wrap gap-2">
@@ -562,14 +562,14 @@ export default function EmpathiaLanding() {
           <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-4 border border-green-400/20 hover:border-green-400/40 transition-all cursor-pointer">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-white" />
+                <Sparkles className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Anonymous #2753</div>
-                <div className="text-white/60 text-xs">94% compatibility</div>
+                <div className="text-gray-900 dark:text-white font-medium">Anonymous #2753</div>
+                <div className="text-gray-700 dark:text-white/60 text-xs">94% compatibility</div>
               </div>
             </div>
-            <p className="text-white/80 text-sm mb-3">
+            <p className="text-gray-900 dark:text-white/80 text-sm mb-3">
               "Shares wisdom from life experiences and guides others through difficult times..."
             </p>
             <div className="flex flex-wrap gap-2">
@@ -581,14 +581,14 @@ export default function EmpathiaLanding() {
           <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-2xl p-4 border border-yellow-400/20 hover:border-yellow-400/40 transition-all cursor-pointer">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center">
-                <Smile className="w-6 h-6 text-white" />
+                <Smile className="w-6 h-6 text-gray-900 dark:text-white" />
               </div>
               <div>
-                <div className="text-white font-medium">Anonymous #2613</div>
-                <div className="text-white/60 text-xs">89% compatibility</div>
+                <div className="text-gray-900 dark:text-white font-medium">Anonymous #2613</div>
+                <div className="text-gray-700 dark:text-white/60 text-xs">89% compatibility</div>
               </div>
             </div>
-            <p className="text-white/80 text-sm mb-3">
+            <p className="text-gray-900 dark:text-white/80 text-sm mb-3">
               "Spreads positivity and helps others find reasons to smile every day..."
             </p>
             <div className="flex flex-wrap gap-2">
@@ -599,7 +599,7 @@ export default function EmpathiaLanding() {
         </div>
 
         <div className="text-center">
-          <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 bg-transparent">
+          <Button variant="outline" className="border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:bg-white/10 bg-transparent">
             View All Connections
           </Button>
         </div>
@@ -668,16 +668,16 @@ export default function EmpathiaLanding() {
       return (
         <div className="relative">
               {/* Chat Interface */}
-              <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+              <div className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 rounded-3xl shadow-2xl overflow-hidden">
                 {/* Chat Header */}
-                <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-white/10">
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                      <EyeOff className="w-6 h-6 text-white" />
+                      <EyeOff className="w-6 h-6 text-gray-900 dark:text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white">Anonymous #2743</h3>
-                      <p className="text-white/60 text-sm flex items-center">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">Anonymous #2743</h3>
+                      <p className="text-gray-700 dark:text-white/60 text-sm flex items-center">
                         <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
                         Online now
                       </p>
@@ -691,12 +691,12 @@ export default function EmpathiaLanding() {
                     {/* Message 1 - Other user */}
                     <div className="flex justify-start">
                       <div className="max-w-[70%]">
-                        <div className="bg-white/10 rounded-2xl p-3 border border-white/20">
-                          <p className="text-white/90 text-sm leading-relaxed">
+                        <div className="bg-gray-100 dark:bg-white/10 rounded-2xl p-3 border border-gray-200 dark:border-white/20">
+                          <p className="text-gray-900 dark:text-white/90 text-sm leading-relaxed">
                             I've been struggling with anxiety lately and don't know how to cope...
                           </p>
                         </div>
-                        <div className="text-xs text-white/60 mt-1">2:30 PM</div>
+                        <div className="text-xs text-gray-700 dark:text-white/60 mt-1">2:30 PM</div>
                       </div>
                     </div>
   
@@ -709,10 +709,10 @@ export default function EmpathiaLanding() {
                             onClick={() => setShowAnalysis(!showAnalysis)}
                             className="flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-400/30 hover:border-purple-400/50 transition-all text-xs"
                           >
-                            <Bot className="w-3 h-3 text-purple-300" />
-                            <span className="text-purple-300 font-medium">AI Analysis</span>
+                            <Bot className="w-3 h-3 text-purple-700 dark:text-purple-300" />
+                            <span className="text-purple-700 dark:text-purple-300 font-medium">AI Analysis</span>
                             <ChevronDown
-                              className={`w-3 h-3 text-purple-300 transition-transform ${
+                              className={`w-3 h-3 text-purple-700 dark:text-purple-300 transition-transform ${
                                 showAnalysis ? "rotate-180" : ""
                               }`}
                             />
@@ -721,9 +721,9 @@ export default function EmpathiaLanding() {
                           {showAnalysis && (
                             <div className="mt-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg p-3 border border-purple-400/20 animate-in slide-in-from-top duration-300">
                               <div className="space-y-1">
-                                <p className="text-white/80 text-xs">• Emotional state: Vulnerable, seeking support</p>
-                                <p className="text-white/80 text-xs">• Tone: Open but cautious</p>
-                                <p className="text-white/80 text-xs">• Intent: Looking for coping strategies</p>
+                                <p className="text-gray-900 dark:text-white/80 text-xs">• Emotional state: Vulnerable, seeking support</p>
+                                <p className="text-gray-900 dark:text-white/80 text-xs">• Tone: Open but cautious</p>
+                                <p className="text-gray-900 dark:text-white/80 text-xs">• Intent: Looking for coping strategies</p>
                               </div>
                             </div>
                           )}
@@ -752,13 +752,13 @@ export default function EmpathiaLanding() {
                                     "I understand how you feel. I've been through similar struggles and found that...",
                                   )
                                 }
-                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                                className="w-full text-left bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-lg p-2 text-gray-900 dark:text-white/80 text-xs transition-colors border border-gray-200 dark:border-white/10 hover:border-white/20"
                               >
                                 "I understand how you feel..."
                               </button>
                               <button
                                 onClick={() => setChatInput("Have you tried any coping strategies that helped?")}
-                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                                className="w-full text-left bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-lg p-2 text-gray-900 dark:text-white/80 text-xs transition-colors border border-gray-200 dark:border-white/10 hover:border-white/20"
                               >
                                 "Have you tried any coping strategies?"
                               </button>
@@ -772,24 +772,24 @@ export default function EmpathiaLanding() {
                     <div className="flex justify-end">
                       <div className="max-w-[70%]">
                         <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-3">
-                          <p className="text-white text-sm leading-relaxed">
+                          <p className="text-gray-900 dark:text-white text-sm leading-relaxed">
                             I understand how you feel. I've been through similar struggles and found that therapy really
                             helped me.
                           </p>
                         </div>
-                        <div className="text-xs text-white/60 mt-1 text-right">2:32 PM</div>
+                        <div className="text-xs text-gray-700 dark:text-white/60 mt-1 text-right">2:32 PM</div>
                       </div>
                     </div>
   
                     {/* Message 3 - Other user */}
                     <div className="flex justify-start">
                       <div className="max-w-[70%]">
-                        <div className="bg-white/10 rounded-2xl p-3 border border-white/20">
-                          <p className="text-white/90 text-sm leading-relaxed">
+                        <div className="bg-gray-100 dark:bg-white/10 rounded-2xl p-3 border border-gray-200 dark:border-white/20">
+                          <p className="text-gray-900 dark:text-white/90 text-sm leading-relaxed">
                             Really? How did you manage to get through it? I feel so overwhelmed sometimes.
                           </p>
                         </div>
-                        <div className="text-xs text-white/60 mt-1">2:33 PM</div>
+                        <div className="text-xs text-gray-700 dark:text-white/60 mt-1">2:33 PM</div>
                       </div>
                     </div>
   
@@ -802,10 +802,10 @@ export default function EmpathiaLanding() {
                             onClick={() => setShowAnalysis(!showAnalysis)}
                             className="flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-400/30 hover:border-purple-400/50 transition-all text-xs"
                           >
-                            <Bot className="w-3 h-3 text-purple-300" />
-                            <span className="text-purple-300 font-medium">AI Analysis</span>
+                            <Bot className="w-3 h-3 text-purple-700 dark:text-purple-300" />
+                            <span className="text-purple-700 dark:text-purple-300 font-medium">AI Analysis</span>
                             <ChevronDown
-                              className={`w-3 h-3 text-purple-300 transition-transform ${
+                              className={`w-3 h-3 text-purple-700 dark:text-purple-300 transition-transform ${
                                 showAnalysis ? "rotate-180" : ""
                               }`}
                             />
@@ -814,9 +814,9 @@ export default function EmpathiaLanding() {
                           {showAnalysis && (
                             <div className="mt-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg p-3 border border-purple-400/20 animate-in slide-in-from-top duration-300">
                               <div className="space-y-1">
-                                <p className="text-white/80 text-xs">• Emotional state: Vulnerable, seeking support</p>
-                                <p className="text-white/80 text-xs">• Tone: Open but cautious</p>
-                                <p className="text-white/80 text-xs">• Intent: Looking for coping strategies</p>
+                                <p className="text-gray-900 dark:text-white/80 text-xs">• Emotional state: Vulnerable, seeking support</p>
+                                <p className="text-gray-900 dark:text-white/80 text-xs">• Tone: Open but cautious</p>
+                                <p className="text-gray-900 dark:text-white/80 text-xs">• Intent: Looking for coping strategies</p>
                               </div>
                             </div>
                           )}
@@ -845,13 +845,13 @@ export default function EmpathiaLanding() {
                                     "I understand how you feel. I've been through similar struggles and found that...",
                                   )
                                 }
-                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                                className="w-full text-left bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-lg p-2 text-gray-900 dark:text-white/80 text-xs transition-colors border border-gray-200 dark:border-white/10 hover:border-white/20"
                               >
                                 "I understand how you feel..."
                               </button>
                               <button
                                 onClick={() => setChatInput("Have you tried any coping strategies that helped?")}
-                                className="w-full text-left bg-white/5 hover:bg-white/10 rounded-lg p-2 text-white/80 text-xs transition-colors border border-white/10 hover:border-white/20"
+                                className="w-full text-left bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-lg p-2 text-gray-900 dark:text-white/80 text-xs transition-colors border border-gray-200 dark:border-white/10 hover:border-white/20"
                               >
                                 "Have you tried any coping strategies?"
                               </button>
@@ -865,21 +865,21 @@ export default function EmpathiaLanding() {
                     <div className="flex justify-end">
                       <div className="max-w-[70%]">
                         <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-3">
-                          <p className="text-white text-sm leading-relaxed">
+                          <p className="text-gray-900 dark:text-white text-sm leading-relaxed">
                             It took time, but therapy and meditation really helped me. Small steps make a big difference.
                           </p>
                         </div>
-                        <div className="text-xs text-white/60 mt-1 text-right">2:35 PM</div>
+                        <div className="text-xs text-gray-700 dark:text-white/60 mt-1 text-right">2:35 PM</div>
                       </div>
                     </div>
                   </div>
                 </div>
   
                 {/* User Input Section */}
-                <div className="border-t border-white/10 bg-gradient-to-r from-black/40 to-black/60">
+                <div className="border-t border-gray-200 dark:border-white/10 bg-gradient-to-r from-black/40 to-black/60">
                   {/* AI Chat History - Only show if AI assistance is enabled */}
                   {aiAssistanceEnabled && (
-                    <div className="p-4 border-b border-white/10">
+                    <div className="p-4 border-b border-gray-200 dark:border-white/10">
                       <div className="flex items-center space-x-2 mb-3">
                         <Bot className="w-4 h-4 text-blue-400" />
                         <span className="text-blue-300 font-medium text-sm">AI Chat History</span>
@@ -895,7 +895,7 @@ export default function EmpathiaLanding() {
                                 className={`rounded-lg p-2 text-xs ${
                                   message.type === "user"
                                     ? "bg-gradient-to-r from-blue-500/30 to-purple-500/30 text-white border border-blue-400/30"
-                                    : "bg-white/10 text-white/80 border border-white/20"
+                                    : "bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white/80 border border-gray-200 dark:border-white/20"
                                 }`}
                               >
                                 <p className="leading-relaxed">{message.content}</p>
@@ -919,7 +919,7 @@ export default function EmpathiaLanding() {
                           onClick={() => setAiAssistanceEnabled(!aiAssistanceEnabled)}
                         >
                           <div
-                            className={`w-4 h-4 bg-white rounded-full shadow-lg transition-transform duration-300 mt-0.5 ${
+                            className={`w-4 h-4 bg-gray-900 dark:bg-white rounded-full shadow-lg transition-transform duration-300 mt-0.5 ${
                               aiAssistanceEnabled ? "translate-x-5" : "translate-x-0.5"
                             }`}
                           />
@@ -933,7 +933,7 @@ export default function EmpathiaLanding() {
                           value={chatInput}
                           onChange={(e) => setChatInput(e.target.value)}
                           placeholder="Type your message..."
-                          className="w-full p-3 bg-white/5 border border-white/10 rounded-xl resize-none focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-white placeholder-white/40 text-sm"
+                          className="w-full p-3 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl resize-none focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-700 dark:placeholder-white/40 text-sm"
                           rows={2}
                         />
                       </div>
@@ -965,34 +965,34 @@ export default function EmpathiaLanding() {
                     {/* Quick AI Topics - Only show if AI assistance is enabled */}
                     {aiAssistanceEnabled && (
                       <div className="space-y-2">
-                        <div className="text-white/60 text-xs font-medium">Quick AI Topics:</div>
+                        <div className="text-gray-700 dark:text-white/60 text-xs font-medium">Quick AI Topics:</div>
                         <div className="flex flex-wrap gap-2">
                           <button
                             onClick={() => setChatInput("How should I respond empathetically?")}
-                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                            className="bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-gray-900 dark:text-white/70 text-xs transition-colors border border-gray-200 dark:border-white/10"
                           >
                             💡 Empathy tips
                           </button>
                           <button
                             onClick={() => setChatInput("What questions should I ask?")}
-                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                            className="bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-gray-900 dark:text-white/70 text-xs transition-colors border border-gray-200 dark:border-white/10"
                           >
                             ❓ Question ideas
                           </button>
                           <button
                             onClick={() => setChatInput("Help me understand their emotion")}
-                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                            className="bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-gray-900 dark:text-white/70 text-xs transition-colors border border-gray-200 dark:border-white/10"
                           >
                             🎯 Emotion analysis
                           </button>
                           <button
                             onClick={() => setChatInput("How to show support without being pushy?")}
-                            className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                            className="bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-gray-900 dark:text-white/70 text-xs transition-colors border border-gray-200 dark:border-white/10"
                           >
                             🤝 Support techniques
                           </button> <button
                           onClick={() => setChatInput("What's the best way to continue this conversation?")}
-                          className="bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-white/70 text-xs transition-colors border border-white/10"
+                          className="bg-gray-100 dark:bg-white/5 hover:bg-white/10 rounded-full px-3 py-1 text-gray-900 dark:text-white/70 text-xs transition-colors border border-gray-200 dark:border-white/10"
                         >
                           💬 Conversation flow
                         </button>
@@ -1078,11 +1078,11 @@ export default function EmpathiaLanding() {
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
+            <div className="inline-flex items-center space-x-2 bg-gray-100 dark:bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-gray-200 dark:border-white/20">
               <Bot className="w-5 h-5 text-blue-300" />
-              <span className="text-white font-medium">AI-Powered Communication</span>
+              <span className="text-gray-900 dark:text-white font-medium">AI-Powered Communication</span>
             </div>
-            <h2 className="text-5xl font-bold text-white mb-8 leading-tight">
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
               Smart conversation
               <br />
               assistance with
@@ -1091,7 +1091,7 @@ export default function EmpathiaLanding() {
                 AI guidance
               </span>
             </h2>
-            <p className="text-xl text-white/80 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-900 dark:text-white/80 mb-8 leading-relaxed">
               Our AI analyzes conversations in real-time, suggests thoughtful responses, and provides instant guidance
               during your emotional conversations.
             </p>
@@ -1100,19 +1100,19 @@ export default function EmpathiaLanding() {
                 <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl flex items-center justify-center">
                   <MessageCircle className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-white font-medium">Real-time message analysis and tone assessment</span>
+                <span className="text-gray-900 dark:text-white font-medium">Real-time message analysis and tone assessment</span>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-white font-medium">Smart response suggestions based on context</span>
+                <span className="text-gray-900 dark:text-white font-medium">Smart response suggestions based on context</span>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-400 rounded-2xl flex items-center justify-center">
                   <Bot className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-white font-medium">Optional AI assistance toggle for privacy</span>
+                <span className="text-gray-900 dark:text-white font-medium">Optional AI assistance toggle for privacy</span>
               </div>
             </div>
           </div>
@@ -1123,7 +1123,7 @@ export default function EmpathiaLanding() {
       {/* Stories Unite Hearts Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-6">Stories unite hearts</h2>
+          <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">Stories unite hearts</h2>
         </div>
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
@@ -1131,22 +1131,22 @@ export default function EmpathiaLanding() {
             {/* Orbital Rings */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div
-                className="w-[500px] h-[500px] border-4 border-white/20 rounded-full animate-spin"
+                className="w-[500px] h-[500px] border-4 border-gray-200 dark:border-white/20 rounded-full animate-spin"
                 style={{ animationDuration: "20s" }}
               ></div>
               <div
-                className="absolute w-[400px] h-[400px] border-2 border-white/10 rounded-full animate-spin"
+                className="absolute w-[400px] h-[400px] border-2 border-gray-200 dark:border-white/10 rounded-full animate-spin"
                 style={{ animationDuration: "15s", animationDirection: "reverse" }}
               ></div>
             </div>
           </div>
           <div>
-            <h3 className="text-4xl font-bold text-white mb-6">
+            <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
               Explore the emotions
               <br />
               of your community
             </h3>
-            <p className="text-xl text-white/80 leading-relaxed">
+            <p className="text-xl text-gray-900 dark:text-white/80 leading-relaxed">
               Discover authentic stories, explore different perspectives, and connect with people who share similar
               experiences and emotions.
             </p>
@@ -1158,12 +1158,12 @@ export default function EmpathiaLanding() {
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="text-4xl font-bold text-white mb-6">
+            <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
               Discover other
               <br />
               soul profiles
             </h3>
-            <p className="text-xl text-white/80 leading-relaxed">
+            <p className="text-xl text-gray-900 dark:text-white/80 leading-relaxed">
               Explore anonymous profiles, connect with kindred spirits, and build meaningful relationships based on
               shared experiences and emotions.
             </p>
@@ -1171,17 +1171,17 @@ export default function EmpathiaLanding() {
           <div className="relative">
             <SoulProfilesGrid />
             {/* Scattered Profile Cards */}
-            <div className="absolute -top-10 -left-10 w-20 h-20 bg-white rounded-2xl shadow-lg p-2 animate-float">
+            <div className="absolute -top-10 -left-10 w-20 h-20 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-float">
               <div className="w-full h-full bg-purple-200 rounded-xl"></div>
             </div>
             <div
-              className="absolute -bottom-10 -right-10 w-20 h-20 bg-white rounded-2xl shadow-lg p-2 animate-float"
+              className="absolute -bottom-10 -right-10 w-20 h-20 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-float"
               style={{ animationDelay: "1s" }}
             >
               <div className="w-full h-full bg-blue-200 rounded-xl"></div>
             </div>
             <div
-              className="absolute top-1/4 -right-16 w-16 h-16 bg-white rounded-2xl shadow-lg p-2 animate-float"
+              className="absolute top-1/4 -right-16 w-16 h-16 bg-gray-900 dark:bg-white rounded-2xl shadow-lg p-2 animate-float"
               style={{ animationDelay: "2s" }}
             >
               <div className="w-full h-full bg-green-200 rounded-xl"></div>
@@ -1194,8 +1194,8 @@ export default function EmpathiaLanding() {
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="text-4xl font-bold text-white mb-6">Create emotion journals</h3>
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
+            <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Create emotion journals</h3>
+            <p className="text-xl text-gray-900 dark:text-white/80 leading-relaxed mb-8">
               Document your emotional journey with private journals. Track your feelings, reflect on your growth, and
               create a personal space for healing.
             </p>
@@ -1203,8 +1203,8 @@ export default function EmpathiaLanding() {
           <div className="relative">
             <JournalInterface />
             {/* Floating Elements */}
-            <div className="absolute top-10 -right-10 w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
-              <Smile className="w-8 h-8 text-black" />
+            <div className="absolute top-10 -right-10 w-16 h-16 bg-gray-900 dark:bg-white rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
+              <Smile className="w-8 h-8 text-white" />
             </div>
             <div
               className="absolute bottom-10 -left-10 w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
@@ -1221,7 +1221,7 @@ export default function EmpathiaLanding() {
             {/* Orbital Ring */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div
-                className="w-[400px] h-[400px] border-4 border-white/20 rounded-full animate-spin"
+                className="w-[400px] h-[400px] border-4 border-gray-200 dark:border-white/20 rounded-full animate-spin"
                 style={{ animationDuration: "25s" }}
               ></div>
             </div>
@@ -1232,42 +1232,42 @@ export default function EmpathiaLanding() {
       {/* 3 Simple Steps Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-6">
+          <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Expand your emotional world
             <br />
             in 3 simple steps
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="bg-black/80 backdrop-blur-xl border border-white/20">
+          <Card className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 hover:scale-105 transition-transform duration-300">
             <CardContent className="p-8 text-center">
-              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                <Heart className="w-10 h-10 text-black" />
+              <div className="w-20 h-20 bg-gray-100 dark:bg-gray-900 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                <Heart className="w-10 h-10 text-gray-900 dark:text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Connect your heart</h3>
-              <p className="text-white/70 leading-relaxed">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Connect your heart</h3>
+              <p className="text-gray-900 dark:text-white/70 leading-relaxed">
                 Share your authentic emotions and experiences with our supportive community.
               </p>
             </CardContent>
           </Card>
-          <Card className="bg-black/80 backdrop-blur-xl border border-white/20">
+          <Card className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 hover:scale-105 transition-transform duration-300">
             <CardContent className="p-8 text-center">
-              <div className="w-20 h-20 bg-gray-800 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                <Users className="w-10 h-10 text-white" />
+              <div className="w-20 h-20 bg-gray-200 dark:bg-gray-800 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                <Users className="w-10 h-10 text-gray-900 dark:text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Invite soulmates</h3>
-              <p className="text-white/70 leading-relaxed">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Invite soulmates</h3>
+              <p className="text-gray-900 dark:text-white/70 leading-relaxed">
                 Find and connect with people who truly understand your journey and experiences.
               </p>
             </CardContent>
           </Card>
-          <Card className="bg-black/80 backdrop-blur-xl border border-white/20">
+          <Card className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 hover:scale-105 transition-transform duration-300">
             <CardContent className="p-8 text-center">
-              <div className="w-20 h-20 bg-gray-700 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                <Sparkles className="w-10 h-10 text-white" />
+              <div className="w-20 h-20 bg-gray-300 dark:bg-gray-700 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                <Sparkles className="w-10 h-10 text-gray-900 dark:text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Discover each other's emotional world</h3>
-              <p className="text-white/70 leading-relaxed">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Discover each other's emotional world</h3>
+              <p className="text-gray-900 dark:text-white/70 leading-relaxed">
                 Explore diverse perspectives and grow together through shared emotional experiences.
               </p>
             </CardContent>
@@ -1278,24 +1278,24 @@ export default function EmpathiaLanding() {
       {/* FAQ Section */}
       <section className="relative z-10 max-w-4xl mx-auto px-6 py-32">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-6">Any questions?</h2>
+          <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">Any questions?</h2>
         </div>
         <div className="space-y-4">
           {faqItems.map((item, index) => (
-            <Card key={index} className="bg-black/80 backdrop-blur-xl border border-white/20">
+            <Card key={index} className="bg-white dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/20 hover:scale-105 transition-transform duration-300">
               <CardContent className="p-0">
                 <button
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
                   onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                 >
-                  <span className="text-white font-medium">{item.question}</span>
+                  <span className="text-gray-900 dark:text-white font-medium">{item.question}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-white transition-transform ${expandedFaq === index ? "rotate-180" : ""}`}
+                    className={`w-5 h-5 text-gray-900 dark:text-white transition-transform ${expandedFaq === index ? "rotate-180" : ""}`}
                   />
                 </button>
                 {expandedFaq === index && (
                   <div className="px-6 pb-6">
-                    <p className="text-white/70 leading-relaxed">{item.answer}</p>
+                    <p className="text-gray-900 dark:text-white/70 leading-relaxed">{item.answer}</p>
                   </div>
                 )}
               </CardContent>
