@@ -1,7 +1,7 @@
 import axiosInstance from '../axios';
 
 interface AuthResponse {
-    token: string;
+    accessToken: string;
     refreshToken: string;
     user: {
         id: string;
@@ -11,10 +11,9 @@ interface AuthResponse {
 }
 
 interface ErrorResponse {
-    data: {
-        error: string;
-        message?: string;
-    };
+    statusCode: number;
+    message?: string;
+    details?: string;
 }
 
 interface ServiceResponse<T> {
@@ -22,107 +21,103 @@ interface ServiceResponse<T> {
     error?: string;
 }
 
-const loginWithGoogle = async (googleToken: string): Promise<AuthResponse> => {
+// Helper function for consistent error handling
+const handleApiError = (error: any): string => {
+    if (error?.response?.data?.message) {
+        return error.response.data.message;
+    }
+    return 'An unexpected error occurred';
+};
+
+// Helper function for token storage
+const storeTokens = (token: string, refreshToken?: string) => {
+    localStorage.setItem('auth_token', token);
+    if (refreshToken) {
+        localStorage.setItem('refresh_token', refreshToken);
+    }
+};
+
+const loginWithGoogle = async (googleToken: string): Promise<ServiceResponse<AuthResponse>> => {
     try {
         const response = await axiosInstance.post('/auth/google-login', {
             idtoken: googleToken
         });
-        // Lưu refresh token
-        if (response.data.refreshToken) {
-            localStorage.setItem('refresh_token', response.data.refreshToken);
-        }
-        return response.data;
+        
+        const { token, refreshToken, user } = response.data;
+        storeTokens(token, refreshToken);
+        localStorage.setItem('user', JSON.stringify(user));
+        
+        return { data: response.data };
     } catch (error) {
-        console.error('Google login failed:', error);
-        throw error;
+        return { error: handleApiError(error) };
     }
 };
 
-const logout = async () => {
+const logout = async (): Promise<void> => {
     try {
-        // Gọi API logout nếu backend cần
         await axiosInstance.post('/auth/logout');
     } catch (error) {
         console.error('Logout error:', error);
     } finally {
-        // Xóa tokens khỏi localStorage
         localStorage.removeItem('auth_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('user');
     }
 };
+
 const register = async (name: string, email: string, password: string): Promise<ServiceResponse<any>> => {
     try {
-        const res = await axiosInstance.post('/auth/register', { name, email, password });
-        return { data: res.data };
+        const response = await axiosInstance.post('/auth/register', { name, email, password });
+        return { data: response.data };
     } catch (error) {
-        if (error && typeof error === 'object' && 'response' in error) {
-            const response = error.response as ErrorResponse;
-            return { error: response.data.error || response.data.message || 'Registration failed' };
-        }
-        return { error: 'An unexpected error occurred' };
+        return { error: handleApiError(error) };
     }
 };
-const checkEmail = async (email: string) => {
-    try {
-       var res =  await axiosInstance.post('/auth/check-email',email);
-       return res.data;
-    } catch (error) {
-        console.error('Login error:', error);
-    } 
-};
+
 const getByEmail = async (email: string): Promise<ServiceResponse<any>> => {
     try {
-        const res = await axiosInstance.get(`/auth/get-by-email/${email}`);
-        return { data: res.data };
+        const response = await axiosInstance.get(`/auth/get-by-email/${email}`);
+        return { data: response.data };
     } catch (error) {
-        if (error && typeof error === 'object' && 'response' in error) {
-            const response = error.response as ErrorResponse;
-            return { error: response.data.error || response.data.message || 'User not found' };
-        }
-        return { error: 'An unexpected error occurred' };
+        return { error: handleApiError(error) };
     }
 };
-const loginWithEmail = async (email: string, password: string): Promise<ServiceResponse<any>> => {
+
+const loginWithEmail = async (email: string, password: string): Promise<ServiceResponse<AuthResponse>> => {
     try {
-        const res = await axiosInstance.post('/auth/login', { email, password });
-        return { data: res.data };
+        const response = await axiosInstance.post('/auth/login', { email, password });
+        
+        const { token, refreshToken, user } = response.data;
+        storeTokens(token, refreshToken);
+        localStorage.setItem('user', JSON.stringify(user));
+        
+        return { data: response.data };
     } catch (error) {
-        if (error && typeof error === 'object' && 'response' in error) {
-            const response = error.response as ErrorResponse;
-            return { error: response.data.error || response.data.message || 'Login failed' };
-        }
-        return { error: 'An unexpected error occurred' };
+        return { error: handleApiError(error) };
     }
 };
+
 const verifyEmail = async (token: string): Promise<ServiceResponse<any>> => {
     try {
-        const res = await axiosInstance.get(`/auth/verify-email?token=${token}`);
-        return { data: res.data };
+        const response = await axiosInstance.get(`/auth/verify-email?token=${token}`);
+        return { data: response.data };
     } catch (error) {
-        if (error && typeof error === 'object' && 'response' in error) {
-            const response = error.response as ErrorResponse;
-            return { error: response.data.error || response.data.message || 'Verification failed' };
-        }
-        return { error: 'An unexpected error occurred' };
+        return { error: handleApiError(error) };
     }
 };
+
 const resendVerification = async (email: string): Promise<ServiceResponse<any>> => {
     try {
-        const res = await axiosInstance.post(`/auth/resend-verification`, { email });
-        return { data: res.data };
+        const response = await axiosInstance.post('/auth/resend-verification', { email });
+        return { data: response.data };
     } catch (error) {
-        if (error && typeof error === 'object' && 'response' in error) {
-            const response = error.response as ErrorResponse;
-            return { error: response.data.error || response.data.message || 'Failed to resend verification' };
-        }
-        return { error: 'An unexpected error occurred' };
+        return { error: handleApiError(error) };
     }
 };
+
 export const authService = {
     loginWithGoogle,
     loginWithEmail,
-    checkEmail,
     getByEmail,
     verifyEmail,
     resendVerification,

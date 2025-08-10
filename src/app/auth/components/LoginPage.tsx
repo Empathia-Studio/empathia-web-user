@@ -61,9 +61,10 @@ const LoginPage = () => {
                 });
 
                 const res = await authService.loginWithGoogle(tokens.data.id_token);
-                if (res.token) {
-                    const userData = res.user as User;
-                    localStorage.setItem('auth_token', res.token);
+                if (res.data?.accessToken) {
+                    const userData = res.data?.user as User;
+                    localStorage.setItem('auth_token', res.data?.accessToken);
+                    localStorage.setItem('refresh_token', res.data.refreshToken);
                     localStorage.setItem('user', JSON.stringify(userData));
                     setAuthState(true, userData);
                     router.push('/chat');
@@ -78,22 +79,6 @@ const LoginPage = () => {
 
     const onSubmit = async (data:LoginFormData) => {
       const userResponse = await authService.getByEmail(data.email);
-      if(!userResponse?.data) {
-        setError("email", {
-          type: "manual",
-          message: "Email not found"
-        });
-        return;
-      }
-      
-      if(!userResponse.data.isEmailVerified){
-        setError("email", {
-          type: "manual",
-          message: "Please verify your email first"
-        });
-        return;
-      }
-      
       if(!showPassword && userResponse.data.passwordHash !== null){
         setShowPassword(true);
         return;
@@ -104,10 +89,12 @@ const LoginPage = () => {
         data.password = "";
       }
       const res = await authService.loginWithEmail(data.email, data.password);
-      if (res.data?.token) {
-        localStorage.setItem('auth_token', res.data.token);
+      console.log("resss: ", res);
+      if (res.data?.accessToken) {
+        localStorage.setItem('auth_token', res.data.accessToken);
+        localStorage.setItem('refresh_token', res.data.refreshToken);
         localStorage.setItem('user', JSON.stringify(res.data.user));
-        setAuthState(true, res.data.user);
+        // setAuthState(true, res.data.user);
         router.push('/chat');
       } else {
         setError("password", {

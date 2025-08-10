@@ -44,14 +44,6 @@ const SignUpPage = () => {
 
     const onSubmit = async (data: SignUpFormData) => {
         try {
-            var res = await authService.checkEmail(data.email);
-            if(res.exists){
-                setError("email", {
-                    type: "manual",
-                    message: "Email already exists"
-                });
-                return;
-            }
             await authService.register(data.name, data.email, data.password);
         } catch (error) {
             console.error('Registration failed:', error);
@@ -77,9 +69,10 @@ const SignUpPage = () => {
                 // Send id_token to backend
                 const res = await authService.loginWithGoogle(tokens.data.id_token);
                 
-                if (res.token) {
-                    localStorage.setItem('auth_token', res.token);
-                    localStorage.setItem('user', JSON.stringify(res.user));
+                if (res.data?.accessToken) {
+                    localStorage.setItem('auth_token', res.data?.accessToken);
+                    localStorage.setItem('refresh_token', res.data.refreshToken);
+                    localStorage.setItem('user', JSON.stringify(res.data?.user));
                     router.push('/chat');
                 }
             } catch (error) {
