@@ -112,6 +112,42 @@ export function useAuthActions() {
     return { success: true };
   }, []);
 
+  // Forgot Password Function
+  const forgotPassword = useCallback(async (email: string) => {
+    setViewState(s => ({ ...s, loading: true, error: undefined }));
+    try {
+      const res = await authApi.forgotPassword(email);
+      if (res?.data) {
+        return { success: true };
+      } else {
+        throw new Error(res.error || 'Password reset request failed');
+      }
+    } catch (e: any) {
+      setViewState(s => ({ ...s, loading: false, error: e?.message }));
+      return { success: false, error: e?.message };
+    }
+    setViewState(s => ({ ...s, loading: false }));
+    return { success: true };
+  }, []);
+
+  // Reset Password Function
+  const resetPassword = useCallback(async (token: string, password: string) => {
+    setViewState(s => ({ ...s, loading: true, error: undefined }));
+    try {
+      const res = await authApi.resetPassword(token, password);
+      if (res?.data) {
+        return { success: true };
+      } else {
+        throw new Error(res.error || 'Password reset failed');
+      }
+    } catch (e: any) {
+      setViewState(s => ({ ...s, loading: false, error: e?.message }));
+      return { success: false, error: e?.message };
+    }
+    setViewState(s => ({ ...s, loading: false }));
+    return { success: true };
+  }, []);
+
   // Google Auth Functions
   const onGoogleSuccess = useCallback(async (codeResponse: { code: string }) => {
     try {
@@ -154,11 +190,13 @@ export function useAuthActions() {
     precheckEmail,
     loginWithEmail,
     
-    // View State (for register, resendVerification, verifyEmail)
+    // View State (for register, resendVerification, verifyEmail, forgotPassword, resetPassword)
     viewState,
     register,
     resendVerification,
     verifyEmail,
+    forgotPassword,
+    resetPassword,
     
     // Google Auth
     googleLoading,

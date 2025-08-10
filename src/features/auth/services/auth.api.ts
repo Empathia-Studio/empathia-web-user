@@ -122,6 +122,22 @@ const resendVerification = async (email: string): Promise<ServiceResponse<any>> 
     }
 };
 
+const forgotPassword = async (email: string): Promise<ServiceResponse<any>> => {
+    try {
+        const response = await axiosInstance.post('/auth/forgot-password', { email });
+        return { data: response.data };
+    } catch (error) {
+        return { error: handleApiError(error) };
+    }
+};
+const resetPassword = async (token: string, password: string): Promise<ServiceResponse<any>> => {
+    try {
+        const response = await axiosInstance.post('/auth/reset-password', { token, password });
+        return { data: response.data };
+    } catch (error) {
+        return { error: handleApiError(error) };
+    }
+};
 export const authApi = {
     exchangeCode,
     loginWithGoogle,
@@ -129,6 +145,8 @@ export const authApi = {
     getByEmail,
     verifyEmail,
     resendVerification,
+    forgotPassword,
+    resetPassword,
     register,
     logout
 }; 

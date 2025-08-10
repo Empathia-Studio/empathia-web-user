@@ -117,7 +117,7 @@ export default function LoginPage() {
         <div className="text-center mt-6 space-y-1">
           <Link href="/auth/signup" className="text-primary text-sm hover:underline">Don't have an account? Create one here.</Link><br/>
           <Link href="/auth/resend-verification" className="text-primary text-sm hover:underline">Didn't receive confirmation instructions?</Link><br/>
-          <Link href="/auth/register" className="text-primary text-sm hover:underline">Forgot your password?</Link>
+          <Link href="/auth/forgot-password" className="text-primary text-sm hover:underline">Forgot your password?</Link>
         </div>
       </div>
     </div>
