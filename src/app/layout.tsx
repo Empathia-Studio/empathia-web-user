@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
-import ModernNavbar from "@/components/navbar";
-import ModernFooter from "@/components/footer";
-import { ThemeProvider } from "@/components/theme-provider"
+import ModernNavbar from "@/shared/components/navbar";
+import ModernFooter from "@/shared/components/footer";
+import { ThemeProvider } from "@/shared/components/theme-provider"
 import { AuthProvider } from "@/lib/contexts/AuthContext";
-import { EnvIndicator } from "@/components/env-indicator";
+import { EnvIndicator } from "@/shared/components/env-indicator";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 const geistSans = Geist({
   variable: "--font-geist-sans",

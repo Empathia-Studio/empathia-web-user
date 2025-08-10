@@ -1,4 +1,4 @@
-import axiosInstance from '../axios';
+import axiosInstance from '../../../lib/axios';
 
 interface AuthResponse {
     accessToken: string;
@@ -36,7 +36,14 @@ const storeTokens = (token: string, refreshToken?: string) => {
         localStorage.setItem('refresh_token', refreshToken);
     }
 };
-
+const exchangeCode = async (code: string, redirectUri: string): Promise<ServiceResponse<any>> => {
+    try {
+        const response = await axiosInstance.post('/auth/exchange-code', { code,redirectUri });
+        return { data: response.data };
+    } catch (error) {
+        return { error: handleApiError(error) };
+    }
+};
 const loginWithGoogle = async (googleToken: string): Promise<ServiceResponse<AuthResponse>> => {
     try {
         const response = await axiosInstance.post('/auth/google-login', {
@@ -115,7 +122,8 @@ const resendVerification = async (email: string): Promise<ServiceResponse<any>> 
     }
 };
 
-export const authService = {
+export const authApi = {
+    exchangeCode,
     loginWithGoogle,
     loginWithEmail,
     getByEmail,

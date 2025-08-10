@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { authService } from '@/lib/services/authService';
+import { useAuthActions } from '../hooks';
 
 export default function VerifyEmail() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { verifyEmail, resendVerification } = useAuthActions();
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const verifyEmail = async () => {
+    const verifyEmailToken = async () => {
       const token = searchParams.get('token');
       const emailParam = searchParams.get('email');
       if (emailParam) setEmail(emailParam);
@@ -23,8 +24,8 @@ export default function VerifyEmail() {
         return;
       }
 
-      const response = await authService.verifyEmail(token);
-      if (response.data) {
+      const result = await verifyEmail(token);
+      if (result.success) {
         setStatus('success');
         setMessage('Email verified successfully!');
         // Redirect after 3s
@@ -33,12 +34,12 @@ export default function VerifyEmail() {
         }, 3000);
       } else {
         setStatus('error');
-        setMessage(response.error || 'An error occurred while verifying email');
+        setMessage(result.error || 'An error occurred while verifying email');
       }
     };
 
-    verifyEmail();
-  }, [searchParams, router]);
+    verifyEmailToken();
+  }, [searchParams, router, verifyEmail]);
 
   const handleResendVerification = async () => {
     if (!email) {
@@ -46,20 +47,20 @@ export default function VerifyEmail() {
       return;
     }
 
-    const response = await authService.resendVerification(email);
-    if (response.data) {
+    const result = await resendVerification(email);
+    if (result.success) {
       setMessage('Verification email sent! Please check your inbox.');
     } else {
-      setMessage(response.error || 'Failed to resend verification email.');
+      setMessage(result.error || 'Failed to resend verification email.');
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {status === 'loading' && (
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-foreground mx-auto"></div>
             <p className="mt-4 text-lg">Verifying your email...</p>
           </div>
         )}
@@ -71,8 +72,8 @@ export default function VerifyEmail() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h2 className="mt-4 text-xl font-bold text-gray-900">✓ {message}</h2>
-            <p className="mt-2 text-gray-600">You will be redirected to login page...</p>
+            <h2 className="mt-4 text-xl font-bold text-foreground">✓ {message}</h2>
+            <p className="mt-2 text-muted-foreground">You will be redirected to login page...</p>
           </div>
         )}
 
@@ -83,7 +84,7 @@ export default function VerifyEmail() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </div>
-            <h2 className="mt-4 text-xl font-bold text-gray-900">✗ {message}</h2>
+            <h2 className="mt-4 text-xl font-bold text-foreground">✗ {message}</h2>
             {email && (
               <button
                 onClick={handleResendVerification}

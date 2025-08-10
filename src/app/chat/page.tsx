@@ -1,6 +1,6 @@
-import ChatMain from '@/app/chat/components/ChatMain';
-import ChatSidebar from './components/ChatSidebar';
-import ChatInfo from './components/ChatInfo';
+import ChatMain from '@/features/chat/components/ChatMain';
+import ChatSidebar from '../../features/chat/components/ChatSidebar';
+import ChatInfo from '../../features/chat/components/ChatInfo';
 
 export default function Page() {
      return (

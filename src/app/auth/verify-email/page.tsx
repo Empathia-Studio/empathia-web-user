@@ -1,4 +1,4 @@
-import VerifyEmail from "../components/VerifyEmail";
+import VerifyEmail from "../../../features/auth/components/VerifyEmail";
 import { Suspense } from 'react'
 const Page = () => {
   return (
