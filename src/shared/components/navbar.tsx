@@ -1,18 +1,17 @@
 "use client"
 
 import { Bell, MessageCircle, Moon, Sun, User as UserIcon, LogOut, BookText, Layout } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import {authService} from "@/lib/services/authService"
+import { Avatar, AvatarFallback, AvatarImage } from "@/shared/components/ui/avatar"
+import { Button } from "@/shared/components/ui/button"
+import {authApi} from "@/features/auth/services/auth.api"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useEffect, useState } from "react"
+} from "@/shared/components/ui/dropdown-menu"
 import { useRouter } from 'next/navigation';
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "@/shared/components/theme-toggle"
 import { useAuth } from "@/lib/contexts/AuthContext"
 
 export default function ModernNavbar() {
@@ -28,7 +27,7 @@ export default function ModernNavbar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       <div className="flex justify-center w-full py-4 ">
-        <nav className="flex items-center justify-between bg-card dark:bg-card text-card-foreground px-6 py-3 rounded-full shadow-lg dark:shadow-white/10 max-w-4xl w-full mx-4 transition-all duration-300">
+        <nav className="flex items-center justify-between bg-card dark:bg-card text-card-foreground px-6 py-3 rounded-full shadow-lg dark:shadow-foreground/10 max-w-4xl w-full mx-4 transition-all duration-300">
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={()=>router.push('/')}>
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -94,7 +93,7 @@ export default function ModernNavbar() {
                       <span>My Diary</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => {
-                      authService.logout().then(() => {
+                      authApi.logout().then(() => {
                         setAuthState(false, null);
                         router.push('/auth/login');
                       });

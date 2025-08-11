@@ -1,9 +1,10 @@
 "use client"
-
+import { useRouter } from 'next/navigation';
 import { Github, Instagram, Linkedin, Twitter } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/shared/components/ui/button"
 
 export default function ModernFooter() {
+  const router = useRouter();
   const productLinks = [
     { name: "Features", href: "/features" },
     { name: "Pricing", href: "/pricing" },
@@ -45,14 +46,14 @@ export default function ModernFooter() {
           {/* Left Section - Logo and Description */}
           <div className="space-y-6">
             <div className="flex items-center space-x-2">
-            <div className="flex items-center">
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-            <div className="w-6 h-6 bg-gray-900 rounded-full relative">
-              <div className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full"></div>
+            <div className="flex items-center cursor-pointer" onClick={()=>router.push('/')}>
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 bg-background rounded-full relative">
+                <div className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></div>
+              </div>
             </div>
           </div>
-        </div>
-              <span className="text-xl font-bold text-black dark:text-white">Empathia</span>
+              <span className="text-xl font-bold text-foreground ">Empathia</span>
             </div>
 
             <p className="text-gray-400 max-w-md leading-relaxed">
@@ -82,7 +83,7 @@ export default function ModernFooter() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {/* Product Column */}
             <div>
-              <h3 className="font-semibold text-black mb-4 dark:text-white">Product</h3>
+              <h3 className="font-semibold mb-4 text-foreground">Product</h3>
               <ul className="space-y-3">
                 {productLinks.map((link) => (
                   <li key={link.name}>
@@ -96,7 +97,7 @@ export default function ModernFooter() {
 
             {/* Resources Column */}
             <div>
-              <h3 className="font-semibold text-black mb-4 dark:text-white">Resources</h3>
+              <h3 className="font-semibold mb-4 text-foreground">Resources</h3>
               <ul className="space-y-3">
                 {resourceLinks.map((link) => (
                   <li key={link.name}>
@@ -110,7 +111,7 @@ export default function ModernFooter() {
 
             {/* Company Column */}
             <div>
-              <h3 className="font-semibold text-black mb-4 dark:text-white ">Company</h3>
+              <h3 className="font-semibold mb-4 text-foreground">Company</h3>
               <ul className="space-y-3">
                 {companyLinks.map((link) => (
                   <li key={link.name}>

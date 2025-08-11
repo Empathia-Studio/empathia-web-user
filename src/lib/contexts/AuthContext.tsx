@@ -1,7 +1,7 @@
 'use client';
 
+import User from '@/features/auth/model/users';
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import User from '@/models/User';
 
 interface AuthContextType {
   isLoggedIn: boolean;

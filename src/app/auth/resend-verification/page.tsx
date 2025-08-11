@@ -1,4 +1,4 @@
-import ResendVerification from "../components/ResendVerification";
+import ResendVerification from "../../../features/auth/components/ResendVerification";
 
 const Page = () => {
   return (
